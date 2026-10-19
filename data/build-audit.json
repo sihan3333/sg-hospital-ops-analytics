@@ -1,0 +1,134 @@
+{
+  "quality": {
+    "dateCount": 986,
+    "rowCount": 8874,
+    "completeCount": 8637,
+    "borOnlyCount": 63,
+    "allMissingCount": 174,
+    "duplicateKeys": 0
+  },
+  "sources": [
+    {
+      "metric": "ed_attendances",
+      "file": "急诊就诊量_EMD_week36Y2026.xlsx",
+      "sha256": "048ad30421329d43c39ae827afdeaa3b94df3af8c105d509db8f1ade881740d5",
+      "sheetCounts": [
+        {
+          "sheet": "Historical",
+          "studyDateRows": 972
+        },
+        {
+          "sheet": "Sheet1",
+          "studyDateRows": 7
+        }
+      ],
+      "dateCount": 979,
+      "rowCount": 8811,
+      "nonblankCount": 8637,
+      "blankCount": 174,
+      "zeroCount": 0,
+      "missingDates": [
+        "2026-08-02",
+        "2026-08-03",
+        "2026-08-04",
+        "2026-08-05",
+        "2026-08-06",
+        "2026-08-07",
+        "2026-08-08"
+      ],
+      "blankByHospital": {
+        "AH": 0,
+        "CGH": 0,
+        "KTPH": 0,
+        "NTFGH": 0,
+        "NUH(A)": 0,
+        "SGH": 0,
+        "SKH": 0,
+        "TTSH": 0,
+        "WH": 174
+      }
+    },
+    {
+      "metric": "bor_ratio",
+      "file": "床位占用率_BOR_week36Y2026.xlsx",
+      "sha256": "51b7957349e3a86cfc2938deba1c33b88ce798109d6d53d23f14db52b289c882",
+      "sheetCounts": [
+        {
+          "sheet": "BOR(%)_historical",
+          "studyDateRows": 979
+        },
+        {
+          "sheet": "Sheet1",
+          "studyDateRows": 7
+        }
+      ],
+      "dateCount": 986,
+      "rowCount": 8874,
+      "nonblankCount": 8700,
+      "blankCount": 174,
+      "zeroCount": 0,
+      "missingDates": [],
+      "blankByHospital": {
+        "AH": 0,
+        "CGH": 0,
+        "KTPH": 0,
+        "NTFGH": 0,
+        "NUH(A)": 0,
+        "SGH": 0,
+        "SKH": 0,
+        "TTSH": 0,
+        "WH": 174
+      },
+      "above100PercentCount": 0
+    },
+    {
+      "metric": "admission_wait_p50_hours",
+      "file": "入院等待时间_WT_week36Y2026.xlsx",
+      "sha256": "a3a3e7aad1e78ea7bc9d368f25118b00ad36217a00bb90a200eb63d6bc8f5508",
+      "sheetCounts": [
+        {
+          "sheet": "Historical",
+          "studyDateRows": 972
+        },
+        {
+          "sheet": "Sheet1",
+          "studyDateRows": 7
+        }
+      ],
+      "dateCount": 979,
+      "rowCount": 8811,
+      "nonblankCount": 8637,
+      "blankCount": 174,
+      "zeroCount": 2,
+      "missingDates": [
+        "2026-08-02",
+        "2026-08-03",
+        "2026-08-04",
+        "2026-08-05",
+        "2026-08-06",
+        "2026-08-07",
+        "2026-08-08"
+      ],
+      "blankByHospital": {
+        "AH": 0,
+        "CGH": 0,
+        "KTPH": 0,
+        "NTFGH": 0,
+        "NUH(A)": 0,
+        "SGH": 0,
+        "SKH": 0,
+        "TTSH": 0,
+        "WH": 174
+      }
+    }
+  ],
+  "availabilityCounts": {
+    "三项有值": 8637,
+    "三项无数值": 174,
+    "仅床位占用率有值": 63
+  },
+  "join": "one-to-one full outer join on date + unchanged hospital_code",
+  "missingPolicy": "Null stays null; an absent source date has a null source; a blank source cell keeps its source coordinate. Zero stays zero.",
+  "borStorage": "Unrounded original ratio; display 0.95 as 95%, without altering storage.",
+  "limitations": "Same-day alignment does not identify the same patients or a causal relationship. No patient-level data or exact daily bed denominator is available."
+}

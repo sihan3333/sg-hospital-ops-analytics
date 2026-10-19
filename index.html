@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>新加坡医院入院等待观察</title>
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="data/dashboard-data.js"></script>
+  <script defer src="logic.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+<div class="page">
+  <header class="masthead">
+    <div><div class="eyebrow"><span class="brand-mark">+</span> SINGAPORE · HOSPITAL DATA</div><h1>入院等待，放回运营背景中观察。</h1><p class="intro">用公开日数据定位值得复核的时段，结合急诊需求与床位占用变化理解等待。</p></div>
+    <div class="edition"><span class="tag">个人数据分析项目</span><p>2024—2026 · 历史快照<br><span id="dataStamp">数据加载中…</span></p></div>
+  </header>
+  <div class="dataset-bar"><span id="datasetSummary">正在读取本地数据</span><span>MOH 公开来源 · 非实时监控</span></div>
+  <section class="filter-panel" aria-label="筛选分析范围">
+    <form id="filters">
+      <label>医院<select id="hospital" name="hospital"><option value="CGH">CGH</option></select></label>
+      <label>开始日期<input type="date" id="start" name="start" value="2024-05-02" required></label>
+      <label>结束日期<input type="date" id="end" name="end" value="2024-05-08" required></label>
+      <button class="primary" type="submit">查看分析</button>
+    </form>
+    <div class="presets"><span>快速查看</span><button type="button" data-preset="case">CGH 案例周</button><button type="button" data-preset="latest">最近7天</button><button type="button" data-preset="year">2024全年</button></div>
+    <p id="formError" class="error" role="alert" hidden></p>
+  </section>
+  <main id="mainContent" hidden>
+    <div class="section-heading"><div><p class="eyebrow">01 / 区间概览</p><h2 id="selectionTitle"></h2></div><span id="coverage" class="tag"></span></div>
+    <p class="context" id="comparisonRange"></p>
+    <div id="kpis" class="kpi-grid" aria-live="polite"></div>
+    <div id="reference" class="reference" aria-live="polite"></div>
+    <section class="chart-section">
+      <div class="section-heading"><div><p class="eyebrow">02 / 历史趋势</p><h2>先看水平，再看变化是否持续</h2></div><span id="chartRange" class="context"></span></div>
+      <div class="chart-legend"><span><i class="key daily"></i>每日等待中位数</span><span><i class="key rolling"></i>连续7天日中位数均值</span><span><i class="key window"></i>所选区间</span></div>
+      <div id="waitChart" class="chart main-chart"></div>
+      <div class="small-charts"><div><h3>急诊就诊量 <span>次 / 日</span></h3><div id="edChart" class="chart"></div></div><div><h3>午夜床位占用率 <span>%</span></h3><div id="borChart" class="chart"></div></div></div>
+      <p class="footnote">线条在缺失处断开。7日均值要求连续7天都有值；每天的中位数均值不等于全部患者的平均等待。</p>
+    </section>
+    <section class="peer-section">
+      <div class="section-heading"><div><p class="eyebrow">03 / 同期对照</p><h2>这段变化，也出现在其他医院吗？</h2></div><span class="context">固定7院 · 点击医院切换</span></div>
+      <p class="context">各院与自己的前一个等长窗口比较。此表用于观察共同变化，不代表医院质量排名。</p>
+      <div class="table-scroll"><table><thead><tr><th>医院</th><th>本期有效天数</th><th>本期日P50均值 / 小时</th><th>前期日P50均值 / 小时</th><th>变化 / 小时</th></tr></thead><tbody id="peers"></tbody></table></div>
+      <p class="footnote">AH 为 Urgent Care；WH 的覆盖起点不同。两者均保留在医院筛选和原始明细中。</p>
+    </section>
+    <section class="detail-section">
+      <div class="section-heading"><div><p class="eyebrow">04 / 回到原始记录</p><h2>每日数值与数据完整性</h2></div><button id="export" type="button">导出当前区间 CSV</button></div>
+      <p id="detailSummary" class="context"></p>
+      <div class="table-scroll"><table class="detail-table"><thead><tr><th>日期</th><th>急诊量 / 次</th><th>午夜BOR / %</th><th>等待日P50 / 小时</th><th>数据状态</th><th>原表单元格（急诊 / BOR / 等待）</th></tr></thead><tbody id="details"></tbody></table></div>
+      <button id="more" type="button" class="more" hidden></button>
+    </section>
+  </main>
+  <section class="notes-section">
+    <details><summary>指标口径与使用边界</summary><div class="notes-grid"><div><h3>等待指标</h3><p>医生决定收治入院，至患者离开急诊前往住院病房。MOH提供每日中位数；区间卡片展示这些日中位数的简单平均。</p></div><div><h3>床位与需求背景</h3><p>BOR是按官方日期记录的午夜快照，不是实时空床数；详细床位分母范围仍待核实。急诊就诊次数不等于急诊决定入院人数。</p></div><div><h3>能支持的结论</h3><p>用来定位变化、组织复核线索。相关不等于因果；未验证院内原因、策略采纳或患者等待改善。7日历史对照是探索性参照，不是临床标准。</p></div></div></details>
+    <details><summary>数据来源与项目交付</summary><div class="notes-grid"><div><h3>官方来源</h3><ul id="sources"></ul></div><div><h3>继续查看</h3><p><a href="简短报告.md">简短报告</a> · <a href="README.md">复现说明</a></p><p><a href="亲手练习.md">亲手完成一次查询</a> · <a href="data/hospital_metrics.csv" download>完整整理表 CSV</a></p></div><div><h3>可追溯数据</h3><p>日期与医院代码为联合键；保留空值、原始零值和来源单元格。下载快照与数据校验记录见 <a href="data/build-audit.json">构建检查记录</a>。</p></div></div></details>
+  </section>
+  <footer><span>SIHAN ZHENG · 医疗数据分析作品</span><span>公开数据探索，不代表医院实际运营系统</span></footer>
+</div>
+<noscript><p>请启用JavaScript后查看本地看板。整理数据仍可从 data/hospital_metrics.csv 打开。</p></noscript>
+</body>
+</html>
