@@ -1,0 +1,193 @@
+{
+  "random_forest": {
+    "MAE": 16.398396367867292,
+    "RMSE": 21.359807147023954,
+    "MAPE_%": 6.079764705287388,
+    "n": 15435,
+    "best": {
+      "params": {
+        "max_depth": 8,
+        "min_samples_leaf": 20,
+        "max_features": 0.5
+      },
+      "cv_mae": 15.621349551726539
+    },
+    "search": [
+      {
+        "params": {
+          "max_depth": 8,
+          "min_samples_leaf": 5,
+          "max_features": 0.5
+        },
+        "cv_mae": 15.640365669894502
+      },
+      {
+        "params": {
+          "max_depth": 8,
+          "min_samples_leaf": 5,
+          "max_features": 1.0
+        },
+        "cv_mae": 15.944453365729279
+      },
+      {
+        "params": {
+          "max_depth": 8,
+          "min_samples_leaf": 20,
+          "max_features": 0.5
+        },
+        "cv_mae": 15.621349551726539
+      },
+      {
+        "params": {
+          "max_depth": 8,
+          "min_samples_leaf": 20,
+          "max_features": 1.0
+        },
+        "cv_mae": 15.913152810083503
+      },
+      {
+        "params": {
+          "max_depth": null,
+          "min_samples_leaf": 5,
+          "max_features": 0.5
+        },
+        "cv_mae": 15.892941722725666
+      },
+      {
+        "params": {
+          "max_depth": null,
+          "min_samples_leaf": 5,
+          "max_features": 1.0
+        },
+        "cv_mae": 16.496264730462077
+      },
+      {
+        "params": {
+          "max_depth": null,
+          "min_samples_leaf": 20,
+          "max_features": 0.5
+        },
+        "cv_mae": 15.745920284012437
+      },
+      {
+        "params": {
+          "max_depth": null,
+          "min_samples_leaf": 20,
+          "max_features": 1.0
+        },
+        "cv_mae": 16.244780215744612
+      }
+    ]
+  },
+  "xgboost": {
+    "MAE": 16.469617014636842,
+    "RMSE": 21.302119644071364,
+    "MAPE_%": 6.063118048356557,
+    "n": 15435,
+    "best": {
+      "params": {
+        "max_depth": 3,
+        "learning_rate": 0.03,
+        "n_estimators": 300
+      },
+      "cv_mae": 15.471332420162957
+    },
+    "search": [
+      {
+        "params": {
+          "max_depth": 3,
+          "learning_rate": 0.03,
+          "n_estimators": 300
+        },
+        "cv_mae": 15.471332420162957
+      },
+      {
+        "params": {
+          "max_depth": 3,
+          "learning_rate": 0.03,
+          "n_estimators": 800
+        },
+        "cv_mae": 15.598470565789574
+      },
+      {
+        "params": {
+          "max_depth": 3,
+          "learning_rate": 0.1,
+          "n_estimators": 300
+        },
+        "cv_mae": 15.637733200338012
+      },
+      {
+        "params": {
+          "max_depth": 3,
+          "learning_rate": 0.1,
+          "n_estimators": 800
+        },
+        "cv_mae": 16.20036148372778
+      },
+      {
+        "params": {
+          "max_depth": 5,
+          "learning_rate": 0.03,
+          "n_estimators": 300
+        },
+        "cv_mae": 15.49883590953121
+      },
+      {
+        "params": {
+          "max_depth": 5,
+          "learning_rate": 0.03,
+          "n_estimators": 800
+        },
+        "cv_mae": 15.934969342421832
+      },
+      {
+        "params": {
+          "max_depth": 5,
+          "learning_rate": 0.1,
+          "n_estimators": 300
+        },
+        "cv_mae": 16.218752567561932
+      },
+      {
+        "params": {
+          "max_depth": 5,
+          "learning_rate": 0.1,
+          "n_estimators": 800
+        },
+        "cv_mae": 17.134820915640525
+      }
+    ],
+    "mean_abs_shap": {
+      "dow_0": 0.0348999984562397,
+      "same_dow_1w_r": 0.012900000438094139,
+      "same_dow_2w_r": 0.011099999770522118,
+      "dow_5": 0.011099999770522118,
+      "doy_cos": 0.008999999612569809,
+      "same_dow_3w_r": 0.007600000128149986,
+      "is_holiday": 0.007600000128149986,
+      "dow_6": 0.007499999832361937,
+      "same_dow_4w_r": 0.006300000008195639,
+      "dow_1": 0.006200000178068876,
+      "last7_r": 0.00570000009611249,
+      "after_holiday": 0.004900000058114529,
+      "before_holiday": 0.0032999999821186066,
+      "dow_4": 0.0031999999191612005,
+      "doy_sin": 0.0027000000700354576,
+      "dow_2": 0.002199999988079071,
+      "hosp_WH": 0.0017999999690800905,
+      "hosp_AH": 0.00139999995008111,
+      "hosp_KTPH": 0.0005000000237487257,
+      "last_day_r": 9.999999747378752e-05,
+      "dow_3": 9.999999747378752e-05,
+      "hosp_SGH": 9.999999747378752e-05,
+      "hosp_SKH": 9.999999747378752e-05,
+      "h": 0.0,
+      "prev_day_r": 0.0,
+      "hosp_CGH": 0.0,
+      "hosp_NTFGH": 0.0,
+      "hosp_NUH(A)": 0.0,
+      "hosp_TTSH": 0.0
+    }
+  }
+}

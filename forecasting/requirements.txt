@@ -1,0 +1,12 @@
+holidays==0.106
+matplotlib==3.11.2
+numpy==2.5.4
+openpyxl==3.1.5
+pandas==3.0.6
+scikit-learn==1.9.1
+seaborn==0.13.2
+shap==0.54.1
+statsmodels==0.15.0
+tabulate==0.10.0
+torch==2.14.1  # CPU build: add --index-url https://download.pytorch.org/whl/cpu
+xgboost==3.4.1
